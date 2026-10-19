@@ -1,0 +1,34 @@
+enable
+configure terminal
+hostname Switch1
+vlan 10
+ name HR
+exit
+vlan 20
+ name IT
+exit
+vlan 30
+ name FINANCE
+exit
+interface fastethernet 0/1
+ switchport mode access
+ switchport access vlan 10
+exit
+interface fastethernet 0/2
+ switchport mode access
+ switchport access vlan 20
+exit
+interface fastethernet 0/3
+ switchport mode access
+ switchport access vlan 30
+exit
+interface gigabitethernet 0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+exit
+interface gigabitethernet 0/2
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+exit
+end
+copy running-config startup-config
